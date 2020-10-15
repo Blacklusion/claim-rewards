@@ -28,6 +28,8 @@ We **highly** suggest creating a custom permission only for claiming rewards. Th
 ## Cron
 Claim-Rewards uses normal Cron Patterns for specifying the frequency in which the rewards will be claimed. 
 ![alt text](https://www.framepkg.com/uploads/4/9/7/8/49780617/5870686_orig.jpg "Cron Pattern")
+
+
 *For example*: If you want to claim your rewards at 12:00 UTC you will need to use the following pattern:
 ```
 00 00 12 * * *
