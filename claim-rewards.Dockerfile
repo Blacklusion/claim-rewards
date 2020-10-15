@@ -6,12 +6,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --production
 
-RUN npm install -g typescript
-
 # copy in application source
 COPY . .
 
-RUN tsc
+RUN npm run tsc
 
 # copy built application to runtime image
 FROM node:12-alpine
