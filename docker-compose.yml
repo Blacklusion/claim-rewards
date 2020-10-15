@@ -1,0 +1,18 @@
+#############################################################################
+#                                                                           #
+#                     Claim EOSIO Blockchain Rewards                        #
+#                           © Blacklusion 2020                              #
+#                                                                           #
+#############################################################################
+
+version: '3'
+
+services:
+  claim-rewards:
+    container_name: claim-rewards
+    restart: "unless-stopped"
+    build:
+      context: ./claim-rewards
+      build: claim-rewards.Dockerfile
+    volumes:
+    - ./config:
