@@ -18,6 +18,7 @@
     "ts-node": "3.3.0"
   },
   "dependencies": {
+    "typescript": "^4.0.3",
     "tslog": "^2.8.0",
     "eosjs": "^21.0.3",
     "cron": "^1.8.2",
