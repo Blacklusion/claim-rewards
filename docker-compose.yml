@@ -15,4 +15,4 @@ services:
       context: ./claim-rewards
       build: claim-rewards.Dockerfile
     volumes:
-    - ./config:
+    - ./config:/app/config
