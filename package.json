@@ -1,29 +1,40 @@
 {
-  "name": "template-typescript",
+  "name": "claim-rewards",
   "version": "1.0.0",
   "license": "MPL-2.0",
-  "description": "",
+  "description": "Claims Rewards for EOSIO based Blockchains on basis of a specified Cron Pattern.",
   "repository": {
     "type": "git",
     "url": ""
   },
   "devDependencies": {
-    "prettier": "2.1.1",
+    "typescript": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "eslint": "^7.9.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.11.0",
+    "prettier": "2.1.1",
     "ts-node": "3.3.0"
   },
   "dependencies": {
-    "tslog": "^2.8.0"
+    "tslog": "^2.8.0",
+    "eosjs": "^21.0.3",
+    "cron": "^1.8.2",
+    "node-fetch": "^2.6.1",
+    "config": "^3.3.2",
+    "toml": "^3.0.0"
   },
   "keywords": [
-    "Leonard Scheidemantel"
+    "Blacklusion",
+    "EOSIO",
+    "Blockchain"
   ],
   "main": "src/index.ts",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts --fix",
+    "build": "tsc",
     "start": "node build/index.js",
     "ts-start": "ts-node src/index.ts"
   }
