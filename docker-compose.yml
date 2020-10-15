@@ -13,6 +13,6 @@ services:
     restart: "unless-stopped"
     build:
       context: ./claim-rewards
-      build: claim-rewards.Dockerfile
+      dockerfile: claim-rewards.Dockerfile
     volumes:
     - ./config:/app/config
