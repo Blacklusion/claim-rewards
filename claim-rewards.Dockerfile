@@ -9,7 +9,7 @@ RUN npm install --production
 # copy in application source
 COPY . .
 
-RUN npm run tsc
+RUN npm run-script build
 
 # copy built application to runtime image
 FROM node:12-alpine
