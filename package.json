@@ -5,7 +5,7 @@
   "description": "Claims Rewards for EOSIO based Blockchains on basis of a specified Cron Pattern.",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Blacklusion/claim-rewards"
   },
   "devDependencies": {
     "typescript": "^4.0.3",
