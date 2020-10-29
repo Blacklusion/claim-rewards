@@ -2,7 +2,7 @@
   "name": "claim-rewards",
   "version": "1.0.0",
   "license": "MPL-2.0",
-  "description": "Claims Rewards for EOSIO based Blockchains on basis of a specified Cron Pattern.",
+  "description": "Claims Rewards for EOSIO based Blockchains in a frequent interval.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Blacklusion/claim-rewards"
@@ -21,7 +21,6 @@
     "typescript": "^4.0.3",
     "tslog": "^2.8.0",
     "eosjs": "^21.0.3",
-    "cron": "^1.8.2",
     "node-fetch": "^2.6.1",
     "config": "^3.3.2",
     "toml": "^3.0.0"

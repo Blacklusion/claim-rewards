@@ -1,14 +1,12 @@
 import { logger } from "./common";
 import { Api, JsonRpc, RpcError } from "eosjs";
 import { JsSignatureProvider } from "eosjs/dist/eosjs-jssig";
-import * as cron from "cron";
 import fetch from "node-fetch";
 import * as config from "config";
 
-let cronPattern;
+let claimIntervalMs;
 let chains = [];
 let chainSettings;
-
 
 main();
 /**
@@ -20,9 +18,9 @@ function main() {
 
   // Read Cron Pattern from local.toml
   try {
-    cronPattern = config.get("general.cronPattern");
+    claimIntervalMs = config.get("general.claimIntervalMs");
   } catch (e) {
-    logger.error("No cron pattern was provided");
+    logger.error("No claim Interval was provided");
     allVariablesSet = false;
   }
 
@@ -82,26 +80,27 @@ function main() {
     return 1;
   }
 
+  logger.info("++++++++++++++++++++++++++++++ STARTUP COMPLETE ++++++++++++++++++++++++++++++");
+  logger.info("Claiming Rewards every " + claimIntervalMs + "ms for " + chains.toString().replace(",", ", "));
+  logger.info("Current Date: " + new Date());
+  logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
   /**
    * Claim rewards
    */
+  claimRewardsAllChains();
+  setInterval(claimRewardsAllChains, claimIntervalMs);
+}
 
-  const job = new cron.CronJob({
-    cronTime: cronPattern,
-    onTick: () => {
-      console.log("\n")
-      for (const chainId of chains) {
-        claimRewards(chainSettings, chainId);
-      }
-    },
-  });
-
-  job.start();
-
-  logger.info("++++++++++++++++++++++++++++++ STARTUP COMPLETE ++++++++++++++++++++++++++++++");
-  logger.info('Claiming Rewards at "' + cronPattern + '" for ' + chains.toString().replace(",", ", "));
-  logger.info("Current Date: " + new Date());
-  logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+/**
+ * Claims rewards for all activated chains
+ */
+function claimRewardsAllChains() {
+  console.log("\n");
+  logger.info("--------------- PERFORMING REWARD CLAIM ---------------");
+  for (const chainId of chains) {
+    claimRewardsSingleChain(chainSettings, chainId);
+  }
 }
 
 /**
@@ -109,7 +108,7 @@ function main() {
  * @param chains = all settings for all chains as specified under the chains section in local.toml
  * @param chainId = name of the chain for which the rewards shall be claimed (must match name in local.toml)
  */
-async function claimRewards(chains: any, chainId: any) {
+async function claimRewardsSingleChain(chains: any, chainId: any) {
   // Eos js settings
   const chain = chains[chainId];
   const rpc = new JsonRpc(chain["apiUrl"], { fetch });
