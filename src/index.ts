@@ -64,6 +64,11 @@ function main() {
         allVariablesSet = false;
       }
 
+      if (!chain["isGbm"]) {
+        logger.error('isGbm was not provided for ' + chainId);
+        allVariablesSet = false;
+      }
+
       if (!chain["privateKey"]) {
         logger.error("No privateKey was provided for " + chainId);
         allVariablesSet = false;
@@ -128,7 +133,7 @@ async function claimRewardsSingleChain(chains: any, chainId: any) {
         actions: [
           {
             account: "eosio",
-            name: "claimrewards",
+            name: (chain["isGbm"] ? "claimgbmprod" : "claimrewards"),
             authorization: [
               {
                 actor: chain["producerName"],

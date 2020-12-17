@@ -18,10 +18,12 @@
         apiUrl = "APIURL"
         producerName = "PRODUCERNAME"
         permissionName = "PERMISSIONNAME"
+        isGbm = true
         privateKey = "PRIVATEKEY"
 
     [chains.wax-testnet]
         apiUrl = "https://testnet.wax.blacklusion.io"
         producerName = "blacklusionx"
         permissionName = "claimrewards"
+        isGbm = false
         privateKey = "PRIVATEKEY"
