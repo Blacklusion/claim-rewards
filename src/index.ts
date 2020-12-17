@@ -64,12 +64,12 @@ function main() {
         allVariablesSet = false;
       }
 
-      if (!chain["isGbm"]) {
+      if (chain["isGbm"] === undefined) {
         logger.error('isGbm was not provided for ' + chainId);
         allVariablesSet = false;
       }
 
-      if (!chain["privateKey"]) {
+      if (chain["privateKey"] === undefined) {
         logger.error("No privateKey was provided for " + chainId);
         allVariablesSet = false;
       }
